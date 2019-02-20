@@ -1,8 +1,8 @@
 <div *ngIf="news?.length >0; else noNews">
-  <ul *ngFor = "let news of news" class="collection">
-    <h5 class="collection-item">{{news.headLine}}</h5>
-    <h6 class="collection-item">{{news.summary}}</h6>
-  </ul> 
+  <article *ngFor = "let news of news" class="collection">
+    <a class="collection-item"><strong>{{news.headLine}}</strong></a>
+    <p class="collection-item">{{news.summary}}</p>
+  </article> 
 </div>
 
 <ng-template #noNews>

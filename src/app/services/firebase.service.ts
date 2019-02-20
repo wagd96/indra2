@@ -10,13 +10,22 @@ export class FirebaseService {
   newsCollection: AngularFirestoreCollection<News>;
   newsObservable: Observable<News[]>;
   newsName='News';
+  
   constructor(private firebase:AngularFirestore) { 
     //this.newsObservable = this.firebase.collection('news').valueChanges;
   }
 
   public getNews(){
+    
     this.newsCollection = this.firebase.collection(this.newsName);
     this.newsObservable = this.newsCollection.valueChanges();
+
+    this.newsCollection.snapshotChanges().subscribe(actions=>{
+      actions.forEach(action=>{
+        const data = action.payload.doc.data() as News;
+        data.id = action.payload.doc.id;
+      });
+    });   
 
     return this.newsObservable;
   }
