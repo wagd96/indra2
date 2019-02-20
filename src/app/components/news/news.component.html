@@ -1,0 +1,11 @@
+<div *ngIf="news?.length >0; else noNews">
+  <ul *ngFor = "let news of news" class="collection">
+    <h5 class="collection-item">{{news.headLine}}</h5>
+    <h6 class="collection-item">{{news.summary}}</h6>
+  </ul> 
+</div>
+
+<ng-template #noNews>
+  <hr>
+  <h5>No hay noticias por mostrar</h5>
+</ng-template>
