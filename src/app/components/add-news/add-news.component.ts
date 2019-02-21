@@ -3,49 +3,54 @@ import {FirebaseService} from '../../services/firebase.service';
 import {News} from '../../models/News'
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-add-news',
   templateUrl: './add-news.component.html',
   styleUrls: ['./add-news.component.css']
 })
 export class AddNewsComponent implements OnInit {
-  userAddForm: FormGroup;
+  newsAddForm: FormGroup;
+  submitted=false;
+  
   news: News = {
     body: '',
-    byLine: '',
     headLine: '',
     summary: ''
   }
+
+  
+
   constructor(
     private firebaseService : FirebaseService,
-    private fb: FormBuilder) { 
-      this.construirFormulario();
-    }
+    private fb: FormBuilder) { }
 
   ngOnInit() {
-  }
-
-  construirFormulario() {
-    this.userAddForm = this.fb.group({
-      body: ['', Validators.compose([Validators.required]) ],
-      byLine: ['', Validators.compose([Validators.required]) ],
-      headLine: ['', Validators.compose([Validators.required]) ],
-      summary: ['', Validators.compose([Validators.required]) ]
+    this.newsAddForm = this.fb.group({
+      body: ['', Validators.required ],
+      headLine: ['', Validators.required ],
+      summary: ['', Validators.required ]
     });
   }
 
+  get form(){
+    return this.newsAddForm.controls;
+  }
+
   addNews(){
-    const body = this.userAddForm.get('body').value;
-    const byLine = this.userAddForm.get('byLine').value;
-    const headLine = this.userAddForm.get('headLine').value;
-    const summary = this.userAddForm.get('summary').value;
+    this.submitted=true;
 
-    this.news.body = body;
-    this.news.byLine = byLine;
-    this.news.headLine = headLine;
-    this.news.summary = summary;
-
+    if(this.newsAddForm.invalid){
+      return;
+    }
+    this.news.body = this.newsAddForm.get('body').value;
+    this.news.headLine = this.newsAddForm.get('headLine').value;
+    this.news.summary = this.newsAddForm.get('summary').value;
+ 
     this.firebaseService.addNews(this.news);
+
+    this.newsAddForm.reset();
+    
   }
 
 }

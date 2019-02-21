@@ -17,7 +17,7 @@ export class FirebaseService {
 
   public getNews(){
     
-    this.newsCollection = this.firebase.collection(this.newsName);
+    this.newsCollection = this.firebase.collection(this.newsName,ref=>ref.orderBy('headLine','asc'));
     this.newsObservable = this.newsCollection.valueChanges();
 
     this.newsCollection.snapshotChanges().subscribe(actions=>{

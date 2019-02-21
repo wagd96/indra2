@@ -1,52 +1,54 @@
-<div class="card">
-  <div class="card-contend">
-    <div class="card-header text-center">
-      <h4>
-        <span class="card-title"><strong>Agregar noticia</strong></span>
-      </h4>
-    </div>
-    <form [formGroup]="userAddForm" (ngSubmit)="addNews()" class="form-inline" novalidate>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="display-4 title"><strong>Agregar noticia o artículo</strong></h3>
+        <form [formGroup]="newsAddForm" (ngSubmit)="addNews()">
 
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
+          <div class="container-fluid">
+            <div class="row">
 
-            <h5 class="card-title">
-              <span class="badge badge-info">Título: </span>
-              <input formControlName="headLine" class="form-control form-control-lg" type="text"
-                placeholder="Título de la noticia">
-            </h5>
+              <div class="formGroup">
+                <h6>Título</h6>
+                <textarea type="text" formControlName="headLine" class="materialize-textarea textareaHeadLine "
+                  [ngClass]="{ 'is-invalid': submitted && form.headLine.errors && form.headLine.dirty}" placeholder="Título de la noticia"></textarea>
+                <div *ngIf="submitted && form.headLine.errors && form.headLine.dirty" class="invalid-feedback">
+                  <div *ngIf="form.headLine.errors.required">Es necesario ingresar el Título</div>
+                </div>
+              </div>
 
-            <h5 class="card-title">
-              <span class="badge badge-info">Resumen: </span>
-              <input formControlName="byLine" class="form-control form-control-lg" type="text"
-                placeholder="Resumen de la noticia">
-            </h5>
+              <div class="formGroup">
+                <h6>Resumen</h6>
+                <textarea type="text" formControlName="summary" class="materialize-textarea textareaSummary"
+                  [ngClass]="{ 'is-invalid': submitted && form.summary.errors && form.summary.dirty}" placeholder="Resumen de la noticia"></textarea>                <div *ngIf="submitted && form.summary.errors && form.summary.dirty" class="invalid-feedback">
+                  <div *ngIf="form.summary.errors.required">Es necesario ingresar el Resumen</div>
+                </div>
+              </div>
 
-            <h5 class="card-title">
-              <span class="badge badge-info">Cuerpo: </span>
-              <input formControlName="byLine" class="form-control form-control-lg" type="text"
-                placeholder="Cuerpo de la noticia">
-            </h5>
+              <div class="formGroup">
+                <h6>Cuerpo</h6>
+                
+                <textarea formControlName="body" class="materialize-textarea textareaBody"
+                  [ngClass]="{ 'is-invalid': submitted && form.body.errors }" placeholder="Contenido de la noticia "></textarea> 
+                <div *ngIf="submitted && form.body.errors && form.body.dirty" class="invalid-feedback">
+                  <div *ngIf="form.body.errors.required">Es necesario el contenido de la noticia</div>
+                </div>
+              </div>
+
+            </div>
             
-            <h5 class="card-title">
-                <span class="badge badge-info">Autor: </span>
-                <input formControlName="byLine" class="form-control form-control-lg" type="text"
-                  placeholder="Autor de la noticia">
-              </h5>
+            <div class="row ">
+              <div class="col d-flex">
+                <h5 class="card-title">
+                  <button class="btn btn-info btn-lg" type="submit" [disabled]="!newsAddForm.valid">Crear
+                    noticia</button>
+                </h5>
+              </div>
+            </div>
+
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <h5 class="card-title">
-              <button class="btn btn-info btn-lg " type="submit" [disabled]="!userAddForm.valid">Agregar</button>
-
-            </h5>
-          </div>
-        </div>
-
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>
