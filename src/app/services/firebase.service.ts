@@ -23,7 +23,7 @@ export class FirebaseService {
     this.newsObservable = this.newsCollection.valueChanges();
 
 
-    this.newsCollection.snapshotChanges().subscribe(actions=>{
+     this.newsCollection.snapshotChanges().subscribe(actions=>{
       actions.forEach(action=>{
         const data = action.payload.doc.data() as News;
         data.id = action.payload.doc.id; 
