@@ -14,9 +14,17 @@ export class NewsComponent implements OnInit {
 
   ngOnInit() {
     this.newsService.getNews().subscribe( news => {
-      //console.log(news);
+      news.forEach(item => {
+        item['body'] = item['body'].replace(new RegExp('<br/>','g'), '\n');
+      });
+      
       this.news = news;
     });
+  }
+
+  deleteNotice(event, news: News){
+    console.log(event);
+    this.newsService.deleteNotice(news);
   }
 
 }

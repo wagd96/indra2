@@ -9,34 +9,51 @@
             <div class="row">
 
               <div class="formGroup">
-                <h6>Título</h6>
-                <textarea type="text" formControlName="headLine" class="materialize-textarea textareaHeadLine "
-                  [ngClass]="{ 'is-invalid': submitted && form.headLine.errors && form.headLine.dirty}" placeholder="Título de la noticia"></textarea>
+                <h6>Título*</h6>
+                <textarea type="text" formControlName="headLine" class="materialize-textarea textarea "
+                  [(ngModel)]="news.headLine"
+                  [ngClass]="{ 'is-invalid': submitted && form.headLine.errors && form.headLine.dirty}"
+                  placeholder="Título de la noticia"></textarea>
                 <div *ngIf="submitted && form.headLine.errors && form.headLine.dirty" class="invalid-feedback">
                   <div *ngIf="form.headLine.errors.required">Es necesario ingresar el Título</div>
                 </div>
               </div>
 
               <div class="formGroup">
-                <h6>Resumen</h6>
-                <textarea type="text" formControlName="summary" class="materialize-textarea textareaSummary"
-                  [ngClass]="{ 'is-invalid': submitted && form.summary.errors && form.summary.dirty}" placeholder="Resumen de la noticia"></textarea>                <div *ngIf="submitted && form.summary.errors && form.summary.dirty" class="invalid-feedback">
+                <h6>Resumen*</h6>
+                <textarea type="text" formControlName="summary" class="materialize-textarea textarea"
+                  [(ngModel)]="news.summary"
+                  [ngClass]="{ 'is-invalid': submitted && form.summary.errors && form.summary.dirty}"
+                  placeholder="Resumen de la noticia"></textarea>
+                <div *ngIf="submitted && form.summary.errors && form.summary.dirty" class="invalid-feedback">
                   <div *ngIf="form.summary.errors.required">Es necesario ingresar el Resumen</div>
                 </div>
               </div>
 
               <div class="formGroup">
-                <h6>Cuerpo</h6>
-                
-                <textarea formControlName="body" class="materialize-textarea textareaBody"
-                  [ngClass]="{ 'is-invalid': submitted && form.body.errors }" placeholder="Contenido de la noticia "></textarea> 
+                <h6>Cuerpo*</h6>
+
+                <textarea formControlName="body" class="materialize-textarea textareaBody" [(ngModel)]="news.body"
+                  [ngClass]="{ 'is-invalid': submitted && form.body.errors }"
+                  placeholder="Contenido de la noticia "></textarea>
                 <div *ngIf="submitted && form.body.errors && form.body.dirty" class="invalid-feedback">
-                  <div *ngIf="form.body.errors.required">Es necesario el contenido de la noticia</div>
+                  <div *ngIf="form.body.errors.required">Es necesario ingresar el contenido de la noticia</div>
                 </div>
               </div>
 
+              <div class="formGroup">
+                  <h6>Autor*</h6>
+
+                  <textarea formControlName="author" class="materialize-textarea textarea" [(ngModel)]="news.author"
+                    [ngClass]="{ 'is-invalid': submitted && form.author.errors }"
+                    placeholder="Contenido de la noticia "></textarea>
+                  <div *ngIf="submitted && form.author.errors && form.author.dirty" class="invalid-feedback">
+                    <div *ngIf="form.author.errors.required">Es necesario ingresar el autor de la noticia</div>
+                  </div>
+              </div>
+
             </div>
-            
+
             <div class="row ">
               <div class="col d-flex">
                 <h5 class="card-title">

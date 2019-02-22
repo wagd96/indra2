@@ -6,6 +6,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewsComponent } from './components/news/news.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddNewsComponent } from './components/add-news/add-news.component';
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -15,10 +17,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 //Services
 import {FirebaseService} from './services/firebase.service';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddNewsComponent } from './components/add-news/add-news.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,9 @@ import { AddNewsComponent } from './components/add-news/add-news.component';
     AngularFireModule.initializeApp(environment.firebase,'indraNews'),
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

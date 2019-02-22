@@ -1,8 +1,23 @@
 <div *ngIf="news?.length >0; else noNews">
-  <article *ngFor = "let news of news" class="collection">
-    <a class="collection-item"><strong>{{news.headLine}}</strong></a>
-    <p class="collection-item">{{news.summary}}</p>
-  </article> 
+  <div *ngFor = "let news of news" class="collection" class="blog-card">
+    <div class="meta">
+      <ul class="details">
+        <li class="">{{news.author}}</li>
+        <li class="date">{{news.date}}</li>
+      </ul>
+    </div>
+    <div class="description">
+      <h1>{{news.headLine}}</h1>
+      <h2>{{news.summary}}</h2>
+      <p style="white-space: pre-line">{{news.body}}</p>
+      <p class="read-more">
+          <button (click)="deleteNotice($event, news)" class="btn-floating btn-large">
+            <i class="material-icons">delete</i>
+          </button>
+      </p>
+    </div>
+  </div>
+
 </div>
 
 <ng-template #noNews>

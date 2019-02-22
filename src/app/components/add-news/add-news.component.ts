@@ -12,11 +12,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AddNewsComponent implements OnInit {
   newsAddForm: FormGroup;
   submitted=false;
+  body:string=""
+
   
   news: News = {
     body: '',
     headLine: '',
-    summary: ''
+    summary: '',
+    author: '',
+    date: ''
   }
 
   
@@ -29,7 +33,8 @@ export class AddNewsComponent implements OnInit {
     this.newsAddForm = this.fb.group({
       body: ['', Validators.required ],
       headLine: ['', Validators.required ],
-      summary: ['', Validators.required ]
+      summary: ['', Validators.required ],
+      author: ['', Validators.required ]
     });
   }
 
@@ -43,12 +48,11 @@ export class AddNewsComponent implements OnInit {
     if(this.newsAddForm.invalid){
       return;
     }
-    this.news.body = this.newsAddForm.get('body').value;
-    this.news.headLine = this.newsAddForm.get('headLine').value;
-    this.news.summary = this.newsAddForm.get('summary').value;
- 
+    
+    this.news.body = this.news.body.replace(new RegExp('\n','g'), '<br/>');
+    let date = new Date();
+    this.news.date= date.getDate()+' / '+(date.getMonth()+1)+' / '+date.getUTCFullYear();
     this.firebaseService.addNews(this.news);
-
     this.newsAddForm.reset();
     
   }
