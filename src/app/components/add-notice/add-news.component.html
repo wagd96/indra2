@@ -1,0 +1,50 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="display-4 title"><strong>Agregar noticia o artículo</strong></h3>
+        <form [formGroup]="noticeForm" (ngSubmit)="submitNotice()">
+
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="formGroup">
+                <h6>Título*</h6>
+                <textarea type="text" formControlName="headLine" class="materialize-textarea textarea"
+                  placeholder="Ingrese el título" required></textarea>
+                <p *ngIf="headLine.touched && headLine.invalid" class="error"><sup>*</sup>Por favor ingrese el título
+                </p>
+              </div>
+
+              <div class="formGroup">
+                <h6>Resumen*</h6>
+                <textarea type="text" formControlName="summary" class="materialize-textarea textarea"
+                  placeholder="Ingrese el resumen" required></textarea>
+                <p *ngIf="summary.touched && summary.invalid" class="error"><sup>*</sup>Por favor ingrese el resumen</p>
+              </div>
+
+              <div class="formGroup">
+                <h6>Cuerpo*</h6>
+                <textarea formControlName="body" class="materialize-textarea textareaBody"
+                  placeholder="Contenido de la noticia " required></textarea>
+                <p *ngIf="body.touched && body.invalid" class="error"><sup>*</sup>Por favor ingrese el contenido</p>
+              </div>
+
+              <div class="formGroup">
+                  <h6>Autor*</h6>
+                  <textarea type="text" formControlName="author" class="materialize-textarea textarea"
+                    placeholder="Ingrese el autor" required></textarea>
+                  <p *ngIf="author.touched && author.invalid" class="error"><sup>*</sup>Por favor ingrese el autor</p>
+                </div>>
+
+            </div>
+
+            <div class="formGroup text-rigth">
+                <button type="submit" class="btn btn-info btn-lg" [disabled]="!studentForm.valid">Crear noticia</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

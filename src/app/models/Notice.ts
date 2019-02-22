@@ -1,5 +1,5 @@
-export interface News {
-    id: string;
+export interface Notice {
+    $id: string;
     body: string;
     headLine: string;
     summary?: string;

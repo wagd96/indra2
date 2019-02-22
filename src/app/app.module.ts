@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewsComponent } from './components/news/news.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddNewsComponent } from './components/add-news/add-news.component';
+import { AddNewsComponent } from './components/add-notice/add-notice.component';
 
 //Firebase
 import { AngularFireModule } from '@angular/fire';
